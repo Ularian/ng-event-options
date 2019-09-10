@@ -13,6 +13,8 @@ import { OperatorSymbol } from '../enum/operator-symbol.enum';
 import { throttleEvent } from '../helper/throttle-event';
 import { debounceEvent } from '../helper/debounce-event';
 
+type DocumentEventType = keyof DocumentEventMap;
+
 @Injectable()
 // EventManagerPlugin is not yet part of the public API of Angular, once it is I can remove the `addGlobalEventListener`
 export class DomEventOptionsPlugin /*extends EventManagerPlugin*/ {
@@ -27,7 +29,7 @@ export class DomEventOptionsPlugin /*extends EventManagerPlugin*/ {
     passive: false
   };
 
-  private readonly keyEvents: [ keyof DocumentEventMap ] = [ 'keydown', 'keypress', 'keyup' ];
+  private readonly keyEvents: DocumentEventType[] = [ 'keydown', 'keypress', 'keyup' ];
 
   private readonly blockSeparator: string = '|';
 
