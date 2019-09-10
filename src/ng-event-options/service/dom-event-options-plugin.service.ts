@@ -185,7 +185,9 @@ export class DomEventOptionsPlugin /*extends EventManagerPlugin*/ {
     );
 
     try {
-      window.addEventListener('test', new Function as EventListener, supportObj);
+      const listener = () => {};
+      window.addEventListener('test', listener, supportObj);
+      window.removeEventListener('test', listener, supportObj);
     } catch {
     }
 
